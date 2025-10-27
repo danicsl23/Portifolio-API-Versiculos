@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/danicsl23/Portifolio-API-Versiculos/issues"
   },
-  "homepage": "https://github.com/danicsl23/Portifolio-API-Versiculos#readme"
+  "homepage": "https://github.com/danicsl23/Portifolio-API-Versiculos#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-ui-express": "^5.0.1"
+  }
 }

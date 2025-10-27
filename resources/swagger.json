@@ -1,0 +1,183 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Versículos Aleatórios",
+    "description": "API para obter versículos aleatórios e gerenciar versículos para administradores."
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/versiculo": {
+      "get": {
+        "summary": "Obter um versículo aleatório",
+        "responses": {
+          "200": {
+            "description": "Versículo retornado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Versiculo"
+            }
+          }
+        }
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "summary": "Login seguro para administradores",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Token"
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
+    "/admin/versiculo": {
+      "post": {
+        "summary": "Inserir um novo versículo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Versiculo"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Versículo criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Versiculo"
+            }
+          }
+        }
+      }
+    },
+    "/admin/versiculo/{id}": {
+      "put": {
+        "summary": "Editar um versículo existente",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Versiculo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Versículo atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Versiculo"
+            }
+          },
+          "404": {
+            "description": "Versículo não encontrado"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um versículo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Versículo excluído com sucesso"
+          },
+          "404": {
+            "description": "Versículo não encontrado"
+          }
+        }
+      }
+    },
+    "/admin/versiculos": {
+      "get": {
+        "summary": "Listar todos os versículos",
+        "responses": {
+          "200": {
+            "description": "Lista de versículos retornada com sucesso",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Versiculo"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Versiculo": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "livro": {
+          "type": "string"
+        },
+        "capitulo": {
+          "type": "integer"
+        },
+        "versiculo": {
+          "type": "integer"
+        },
+        "texto": {
+          "type": "string"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Token": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
