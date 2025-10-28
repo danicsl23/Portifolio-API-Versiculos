@@ -8,10 +8,24 @@
   "host": "localhost:3000",
   "basePath": "/api",
   "schemes": ["http"],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Insira o token JWT no formato: Bearer {seu_token}"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
   "paths": {
     "/versiculo": {
       "get": {
         "summary": "Obter um versículo aleatório",
+        "security": [],
         "responses": {
           "200": {
             "description": "Versículo retornado com sucesso",
@@ -51,6 +65,11 @@
     "/admin/versiculo": {
       "post": {
         "summary": "Inserir um novo versículo",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "body",
@@ -74,6 +93,11 @@
     "/admin/versiculo/{id}": {
       "put": {
         "summary": "Editar um versículo existente",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -104,6 +128,11 @@
       },
       "delete": {
         "summary": "Excluir um versículo",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -125,6 +154,11 @@
     "/admin/versiculos": {
       "get": {
         "summary": "Listar todos os versículos",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Lista de versículos retornada com sucesso",
