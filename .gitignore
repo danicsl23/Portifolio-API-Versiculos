@@ -10,3 +10,5 @@ Thumbs.db
 
 # Ignorar arquivos de ambiente
 .env
+
+html-report.html
