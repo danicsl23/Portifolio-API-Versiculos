@@ -9,7 +9,7 @@ describe('Versículo Aleatório', () => {
                 .get('/api/versiculo')
                 .set('Content-Type', 'application/json');
 
-            console.log('Resposta do servidor:', resposta.body);
+            //console.log('Resposta do servidor:', resposta.body);
 
             expect(resposta.status).to.equal(200);
             expect(resposta.body).to.have.property('livro'); // Verifica se contém o livro
@@ -27,8 +27,8 @@ describe('Versículo Aleatório', () => {
                 .get('/api/versiculo')
                 .set('Content-Type', 'application/json');
 
-            console.log('Versículo 1:', resposta1.body);
-            console.log('Versículo 2:', resposta2.body);
+            //console.log('Versículo 1:', resposta1.body);
+            //console.log('Versículo 2:', resposta2.body);
 
             expect(resposta1.body.texto).to.not.equal(resposta2.body.texto); // Verifica aleatoriedade
         });

@@ -42,7 +42,7 @@ describe('Excluir Versículo', () => {
         .delete(`/api/admin/versiculo/${versiculoId}`)
         .set('Authorization', `Bearer ${accessToken}`);
 
-      console.log('Resposta do servidor:', resposta.body);
+      //console.log('Resposta do servidor:', resposta.body);
 
       expect(resposta.status).to.equal(204);
       expect(resposta.body).to.be.empty;

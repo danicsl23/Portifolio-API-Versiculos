@@ -22,7 +22,7 @@ describe('Versículos', () => {
         .get('/api/admin/versiculos')
         .set('Authorization', `Bearer ${accessToken}`);
 
-      console.log('Resposta do servidor:', resposta.body);
+      //console.log('Resposta do servidor:', resposta.body);
 
       expect(resposta.status).to.equal(200);
       expect(resposta.body).to.be.an('array'); // Verifica se é uma lista

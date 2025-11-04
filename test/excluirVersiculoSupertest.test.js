@@ -19,10 +19,10 @@ describe('Excluir Versículo', () => {
   describe('DELETE /api/admin/versiculo/:id', () => {
     it('Deve retornar 204 ao excluir um versículo existente', async () => {
       const resposta = await request(process.env.BASE_URL)
-        .delete('/api/admin/versiculo/1') 
+        .delete('/api/admin/versiculo/3') 
         .set('Authorization', `Bearer ${accessToken}`);
 
-      console.log('Resposta do servidor:', resposta.body);
+      //console.log('Resposta do servidor:', resposta.body);
 
       expect(resposta.status).to.equal(204); // Verifica se foi excluído com sucesso
       expect(resposta.body).to.be.empty;     // 204 geralmente retorna corpo vazio

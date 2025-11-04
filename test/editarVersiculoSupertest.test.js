@@ -26,12 +26,12 @@ describe('Editar Versículo', () => {
       };
 
       const resposta = await request(process.env.BASE_URL)
-        .put('/api/admin/versiculo/1') 
+        .put('/api/admin/versiculo/2') 
         .set('Authorization', `Bearer ${accessToken}`)
         .set('Content-Type', 'application/json')
         .send(versiculoAtualizado);
 
-      console.log('Resposta do servidor:', resposta.body);
+      //console.log('Resposta do servidor:', resposta.body);
 
       expect(resposta.status).to.equal(200);
       expect(resposta.body).to.have.property('id');
