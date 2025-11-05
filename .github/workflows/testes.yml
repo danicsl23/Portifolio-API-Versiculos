@@ -24,5 +24,11 @@ jobs:
     - name: Instalar dependências
       run: npm install
 
+    - name: Iniciar servidor da API
+      run: node src/index.js &
+      
+    - name: Aguardar servidor subir
+      run: sleep 10
+
     - name: Executar testes
       run: npm test
