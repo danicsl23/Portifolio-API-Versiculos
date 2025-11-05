@@ -24,7 +24,7 @@ jobs:
       - name: Iniciar servidor da API
         run: |
           node src/index.js &
-          sleep 10
+          sleep 15
 
       - name: Verificar se servidor está rodando
         run: curl -I http://localhost:3000 || echo "Servidor não respondeu"
