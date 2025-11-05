@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
@@ -11,27 +14,40 @@ jobs:
 
     env:
       PORT: 3000
+      BASE_URL: http://localhost:3000
 
     steps:
       - name: Clonar repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Instalar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
 
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
 
       - name: Iniciar servidor da API
         run: |
           echo "Iniciando servidor..."
           node src/index.js &
-          sleep 15
+      
+      - name: Aguardar API ficar disponível (até 30s)
+        shell: bash
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://localhost:3000 >/dev/null 2>&1; then
+              echo "API está pronta"; exit 0; fi
+            echo "Aguardando API... ($i/30)"; sleep 1;
+          done
+          echo "API não respondeu a tempo" >&2; exit 1
 
       - name: Verificar se servidor está rodando
-        run: curl -I http://localhost:3000 || echo "Servidor não respondeu"
+        run: curl -fsSI http://localhost:3000
 
       - name: Executar testes
-        run: npm test
+        run: |
+          echo "Iniciando testes com Mocha..."
+          npm test
