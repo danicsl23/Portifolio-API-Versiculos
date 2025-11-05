@@ -1,4 +1,5 @@
 name: Executar Testes da API
+run-name: "Execução: Testes da API — ${{ github.ref_name }} — #${{ github.run_number }}"
 
 on:
   push:
@@ -10,6 +11,7 @@ on:
 
 jobs:
   test:
+    name: "Testes da API"
     runs-on: ubuntu-latest
 
     env:
@@ -32,7 +34,7 @@ jobs:
       - name: Iniciar servidor da API
         run: |
           echo "Iniciando servidor..."
-          node src/index.js &
+          node src/index.js > server.log 2>&1 &
       
       - name: Aguardar API ficar disponível (até 30s)
         shell: bash
@@ -66,4 +68,12 @@ jobs:
         with:
           name: html-report
           path: html-report.html
+          if-no-files-found: ignore
+
+      - name: Publicar server.log (sempre)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-log
+          path: server.log
           if-no-files-found: ignore
