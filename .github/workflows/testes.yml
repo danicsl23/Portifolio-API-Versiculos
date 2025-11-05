@@ -52,8 +52,8 @@ jobs:
       - name: Executar testes
         run: |
           set -o pipefail
-          echo "Iniciando testes com Mocha..."
-          npm test 2>&1 | tee mocha-output.txt
+          echo "Iniciando testes com Mocha (HTML + console)..."
+          npm run test:html 2>&1 | tee mocha-output.txt
 
       - name: Publicar relatório de testes (texto)
         if: always()
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: html-report
-          path: html-report.html
+          path: mochawesome-report/index.html
           if-no-files-found: ignore
 
       - name: Publicar server.log (sempre)
