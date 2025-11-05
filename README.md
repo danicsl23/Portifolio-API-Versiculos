@@ -6,7 +6,7 @@ Esta é uma API REST para obter versículos aleatórios da Bíblia e gerenciar v
 ## Funcionalidades
 
 ### Para Usuários (sem autenticação):
-- **Obter versículo aleatório**: Endpoint `GET /api/versiculo` retorna um versículo aleatório.
+- **Obter versículo aleatório**: Endpoint `GET /api/versiculo` retorna um versículo aleatório a cada chamada.
 
 ### Para Administradores (com autenticação JWT):
 - **Login seguro**: Endpoint `POST /api/admin/login` para autenticação.
